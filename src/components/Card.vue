@@ -1,7 +1,7 @@
 <template>
     <div 
         class="card"
-        :class="!isShown && disableClick"
+        :class="isShown && 'disableClick'"
         :id="id"
         @click="handlClick($event)"
     >

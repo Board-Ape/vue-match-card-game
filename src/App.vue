@@ -31,6 +31,7 @@ export default {
     return {
       matched: 0,
       cardArray: [],
+      matchedIds: [],
       firstCardId: '',
       secondCardId: '',
       winner: false
@@ -39,6 +40,7 @@ export default {
   methods: {
     createNewGame: function(num, low, high) {
       this.matched = 0;
+      this.matchedIds = [];
       this.firstCardId = '';
       this.secondCardId = '';
       this.winner = false;
@@ -78,6 +80,7 @@ export default {
       const id = event.currentTarget.id;
 
       if (this.firstCardId === id || this.secondCardId === id) return;
+      if (this.matchedIds.indexOf(id) >= 0) return;
 
       if (!this.firstCardId) {
         this.firstCardId = id;
@@ -91,6 +94,8 @@ export default {
           this.winner = true;
           this.cardArray = [];
           this.matched = 0;
+          this.matchedIds.push(this.firstCardId)
+          this.matchedIds.push(this.secondCardId)
         }
 
         this.firstCardId = '';
